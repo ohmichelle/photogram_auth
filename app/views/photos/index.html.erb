@@ -14,7 +14,7 @@
       <tr>
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h6><%= User.find_by({:id => photo.user_id}).username %>
+            <h6><%= photo.user.username %>
             <small><%= time_ago_in_words(photo.updated_at) %> ago</small></h6>
           </div>
           <div class="panel-body">
@@ -29,10 +29,25 @@
 
                 <% photo.comments.each do |comment| %>
                   <h6 class="text-primary">
-                    <a href="#"><%= User.find_by({:id => comment.user_id}).username %></a>
+                    <a href="#"><%= comment.user.username %></a>
                     <small><%= time_ago_in_words(comment.updated_at) %> ago</small></h6>
                     <%= comment.body %>
                 <% end %>
+
+                <form action="/create_comment" method="post">
+                  <!-- Hidden input for authenticity token to protect from forgery -->
+                  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+                  <input type="hidden" id="photo_id" name="photo_id" class="form-control" value="<%= photo.id %>">
+                  <input type="hidden" id="user_id" name="user_id" class="form-control" value="<%= photo.user_id %>">
+
+                  <!-- Label and input for body -->
+                  <div class="form-group">
+                    <label for="body" class="control-label">
+                    </label>
+                    <input type="text" id="body" name="body" placeholder="Add a comment..." class="form-control" value="<%= @comment.body %>">
+                  </div>
+
+                </form>
 
                 </div>
               </li>
