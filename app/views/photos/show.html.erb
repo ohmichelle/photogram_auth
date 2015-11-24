@@ -9,23 +9,33 @@
       <dd><%= @photo.caption %></dd>
 
       <dt>Image</dt>
-      <dd><img src="<%= @photo.image %>"></dd>
+      <dd><img src="<%= @photo.image %>" width="48"></dd>
 
       <dt>User</dt>
       <dd><%= @photo.user_id %></dd>
 
     </dl>
 
-    <div class="btn-group btn-group-justified">
-      <a href="/photos" class="btn btn-primary">
-        Back
-      </a>
-      <a href="/photos/<%= @photo.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_photo/<%= @photo.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
-    </div>
+    <% if current_user.id == @photo.user_id %>
+      <div class="btn-group btn-group-justified">
+        <a href="/photos" class="btn btn-primary">
+          <i class="fa fa-chevron-left"></i>
+        </a>
+        <a href="/photos/<%= @photo.id %>/edit" class="btn btn-warning">
+          <i class="fa fa-pencil-square-o"></i>
+        </a>
+        <a href="/delete_photo/<%= @photo.id %>" class="btn btn-danger" rel="nofollow">
+          <i class="fa fa-trash-o"></i>
+        </a>
+      </div>
+
+    <% else %>
+      <div class="btn-group btn-group-justified">
+        <a href="/photos" class="btn btn-primary">
+          <i class="fa fa-chevron-left"></i>
+        </a>
+      </div>
+
+    <% end %>
   </div>
 </div>

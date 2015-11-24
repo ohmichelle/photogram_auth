@@ -12,7 +12,11 @@
       <% Photo.where({:user_id => current_user.id}).each do |photo| %>
       <tr>
         <td><%= photo.caption %></td>
-        <td><img src="<%= photo.image %>" width="48"></td>
+        <td>
+          <a href="/photos/<%= photo.id %>">
+          <img src="<%= photo.image %>" width="48">
+          </a>
+        </td>
         <td><%= photo.user_id %></td>
       </tr>
       <% end %>
