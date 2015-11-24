@@ -26,10 +26,18 @@
                 <div class="media-left">
                 </div>
                 <div class="media-body">
-                  <h6 class="media-heading text-primary">
+
+                  <% @comments.each do |comment| %>
+                  <h6 class="text-primary">
+                    <a href="#"><%= User.find_by({:id => comment.user_id}).username %></a>
+                    <small><%= time_ago_in_words(photo.created_at) %> ago</small></h6>
+                    comment comment
+                  <h6 class="text-primary">
                     <a href="#">username</a>
                     <small><%= time_ago_in_words(photo.created_at) %> ago</small></h6>
-                  comment comment
+                    comment comment
+                  <% end  %>
+
                 </div>
               </li>
             </ul>
