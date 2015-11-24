@@ -7,4 +7,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @photos = Photo.all
   end
+
+  def my_likes
+    @user = User.find(params[:id])
+    @photos = Photo.all
+  end
 end

@@ -12,19 +12,14 @@
         <th>Caption</th>
         <th>Image</th>
         <th>User</th>
-        <th>Actions</th>
       </tr>
 
       <% @photos.each do |photo| %>
       <tr>
         <td><%= photo.caption %></td>
-        <td><%= photo.image %></td>
-        <td><%= photo.user_id %></td>
-        <td>
-          <a href="/photos/<%= photo.id %>" class="btn btn-primary">Show</a>
-          <a href="/photos/<%= photo.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_photo/<%= photo.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-        </td>
+        <td><a href="/photos/<%= photo.id %>">
+          <img src="<%= photo.image %>" width="48"></a></td>
+        <td><%= User.find_by({:id => photo.user_id}).username %></td>
       </tr>
       <% end %>
     </table>
