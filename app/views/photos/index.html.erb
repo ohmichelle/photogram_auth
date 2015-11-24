@@ -15,7 +15,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <h6><%= User.find_by({:id => photo.user_id}).username %>
-            <small><%= time_ago_in_words(photo.created_at) %> ago</small></h6>
+            <small><%= time_ago_in_words(photo.updated_at) %> ago</small></h6>
           </div>
           <div class="panel-body">
             <a href="/photos/<%= photo.id %>">
@@ -27,16 +27,12 @@
                 </div>
                 <div class="media-body">
 
-                  <% @comments.each do |comment| %>
+                <% photo.comments.each do |comment| %>
                   <h6 class="text-primary">
                     <a href="#"><%= User.find_by({:id => comment.user_id}).username %></a>
-                    <small><%= time_ago_in_words(photo.created_at) %> ago</small></h6>
-                    comment comment
-                  <h6 class="text-primary">
-                    <a href="#">username</a>
-                    <small><%= time_ago_in_words(photo.created_at) %> ago</small></h6>
-                    comment comment
-                  <% end  %>
+                    <small><%= time_ago_in_words(comment.updated_at) %> ago</small></h6>
+                    <%= comment.body %>
+                <% end %>
 
                 </div>
               </li>
