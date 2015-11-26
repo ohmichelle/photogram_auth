@@ -40,12 +40,20 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="/users"><i class="fa fa-users"></i></a></li>
-          <li><a href="/photos"><i class="fa fa-file-image-o"></i></a></li>
-          <li><a href="/my_likes"><i class="fa fa-heart"></i></a></li>
+          <li><a href="/users"><i class="fa fa-users"></i>
+            <span class="hidden-sm">All Users</span></a>
+          </li>
+          <li><a href="/photos"><i class="fa fa-file-image-o"></i>
+            <span class="hidden-sm">All Posts</span></a>
+          </li>
+          <li><a href="/my_likes"><i class="fa fa-heart"></i>
+            <span class="hidden-sm">My Likes</span></a>
+          </li>
 
           <% if user_signed_in? %>
-            <li><a href="/users/<%= current_user.id %>"><i class="fa fa-user"></i></a></li>
+            <li><a href="/users/<%= current_user.id %>"><i class="fa fa-user"></i>
+              <span class="hidden-sm">My Wall</span></a>
+            </li>
           <% end %>
 
         </ul>
