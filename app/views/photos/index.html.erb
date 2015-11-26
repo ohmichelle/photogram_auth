@@ -27,6 +27,25 @@
                 </div>
                 <div class="media-body">
 
+                <!-- Likes for photo -->
+                <% if(photo.fans.where(:id => current_user.id).exists?) %>
+                  <i class="fa fa-heart"></i>
+                <% else %>
+                   <i class="fa fa-heart-o"></i>
+                <% end %>
+
+                <% if(photo.fans.exists?) %>
+                  <%= photo.fans.pluck(:username).to_sentence %>
+                    <% if(photo.fans.pluck(:username).count > 1) %>
+                      like this</h1>
+                    <% else %>
+                      likes this</h1>
+                    <% end %>
+                <% else %>
+                    be the first to like this
+                <% end %>
+
+                <!-- List of user comments for this photo -->
                 <% photo.comments.each do |comment| %>
                   <h6 class="text-primary">
                     <a href="#"><%= comment.user.username %></a>
